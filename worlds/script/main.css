@@ -1,7 +1,14 @@
 /* -- CUSTOM FONT -- */
+
+/*
+ * Roboto Slab 
+ * Copyright 2015 Google Inc. All Rights Reserved.
+ * Licensed under the Apache License, Version 2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
+ */
 @font-face {
-  font-family: RobotoSlab;
-  src: url(../asset/font/RobotoSlab-Variable.ttf);
+  font-family: 'Roboto Slab';
+  src: url(../asset/font/roboto-slab/roboto-slab.woff2);
 }
 
 /* -- COMMON PARAMETER -- */
@@ -20,7 +27,7 @@
   --black: #000;
   background-color: var(--black);
   color: var(--white);
-  font-family: RobotoSlab, sans-serif;
+  font-family: 'Roboto Slab', sans-serif;
   font-size: 84%;
 }
 
