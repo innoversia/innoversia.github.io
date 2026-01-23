@@ -1,4 +1,12 @@
-/* -- CUSTOM FONT -- */
+/* -- FIRST PARTY RESOURCE -- */
+@import url('./entrance.css');
+
+/* -- THIRD PARTY RESOURCE -- */
+
+/* Font Awesome */
+@import url('./all.min.css');
+@import url('./brands.min.css');
+@import url('./solid.min.css');
 
 /*
  * Roboto Slab 
@@ -8,7 +16,7 @@
  */
 @font-face {
   font-family: 'Roboto Slab';
-  src: url(../asset/font/roboto-slab/roboto-slab.woff2);
+  src: url(../webfonts/roboto-slab/roboto-slab.woff2);
 }
 
 /* -- COMMON PARAMETER -- */
@@ -28,21 +36,56 @@
   background-color: var(--black);
   color: var(--white);
   font-family: 'Roboto Slab', sans-serif;
-  font-size: 84%;
 }
 
 body { margin: 0; padding: 0; }
-
-h1, h2, h3, h4, h5, h6 {
-  margin: 0 0 1rem 0;
-  color: var(--purple-lite);
-}
+h1, h2, h3, h4, h5, h6 { margin: 0 0 1rem 0; color: var(--purple-lite); }
+p { text-align: justify; }
 
 a {
   color: var(--purple-lite);
   text-decoration: none;
   &:hover { color: var(--purple-lite-2); }
 }
+
+table {
+  width: 100%;
+  margin-bottom: 1rem;
+
+  th {
+    padding: 0.2rem 0.4rem;
+    background-color: var(--gray-2);
+    font-weight: bold;
+  }
+
+  td { padding: 0.4rem; border-bottom: 1px solid var(--gray-2); }
+}
+
+form {
+  label { font-weight: bold; }
+  input[type='text'],
+  input[type='password'] {
+    padding: 0.4rem 1rem;
+    border: 1px solid var(--gray-2);
+    border-radius: 2rem;
+    background-color: transparent;
+    color: var(--white);
+    &:focus { outline: 2px solid var(--purple); }
+  }
+}
+
+.button,
+.wg-button {
+          display: inline-block;
+          margin: 0 0.4rem;
+          padding: 0.4rem 1rem;
+          border: 2px solid var(--purple-dark);
+          border-radius: 2rem;
+          background-color: var(--purple);
+          color: var(--white);
+          font-weight: bold;
+          cursor: pointer;
+          &:hover { background-color: var(--purple-2); }
 
 /* -- APPLICATION LAYOUT -- */
 .app {
@@ -55,6 +98,8 @@ a {
   min-height: 84vh;
 
   .header {
+    position: sticky;
+    top: 0px;
     background-color: var(--gray);
     border-bottom: 1px solid var(--gray-2);
     padding: 0.8rem;
@@ -63,19 +108,17 @@ a {
   }
 
   .content {
-    display: flex;
-    flex-flow: row wrap;
     max-width: 62vw;
     margin: auto;
     padding-top: 1rem;
-    /* border: 1px dashed cyan; */
 
-    .wg-full { min-width: 99%; }
-    .wg-half { min-width: 50%; }
+    .flex-container { display: flex; }
 
     .widget {
       flex: auto;
       margin: 0 0.4rem 1rem 0.4rem;
+      background-color: var(--gray);
+      border: 1px solid var(--gray-2);
 
       .wg-header {
         padding: 0.6rem 1rem;
@@ -85,25 +128,39 @@ a {
         font-weight: bold;
       }
 
-      .wg-content {
+      .wg-content[data-flex="1"] {
         display: flex;
-        padding: 1rem;
-        min-height: 4rem;
-        background-color: var(--gray);
-        border: 1px solid var(--gray-2);
-        border-top: 0;
         div { flex: auto; margin: 0 0.4rem; }
-        .wg-button {
-          display: inline-block;
-          padding: 0.8rem 1.6rem;
-          border: 2px solid var(--purple-dark);
-          border-radius: 2rem;
-          background-color: var(--purple);
-          color: var(--white);
-          font-weight: bold;
-          text-transform: uppercase;
-          &:hover { background-color: var(--purple-2); }
+        .content-right { padding-left: 1rem; border-left: 1px solid var(--gray-2); }
+      }
+
+      .wg-content {
+        flex-grow: 1;
+        padding: 1rem;
+        border-top: 0;
         }
+      }
+    }
+  }
+
+  #latest-update {
+    td:nth-child(1) { 
+      width: 6rem;
+      text-align: right;
+    }
+
+    td:nth-child(2) {
+      width: 6rem;
+      padding: 0.2rem;
+      span {
+        display: block;
+        text-align: center;
+        padding: 0.2rem 1rem;
+        background-color: var(--purple-dark);
+        border-radius: 2rem;
+        color: var(--white);
+        font-weight: bold;
+        font-size: 80%;
       }
     }
   }
@@ -111,13 +168,13 @@ a {
 
 /* -- SIDEBAR SECTION -- */
 .sidebar {
+  position: sticky;
+  top: 0px;
   background-color: var(--gray);
 
   .sb-header {
     display: flex;
     padding: 0;
-    position: sticky;
-    top: 0px;
     background-color: var(--purple);
     color: var(--white);
     font-size: 1.2rem;
@@ -131,15 +188,14 @@ a {
     }
 
     .sb-button {
+      cursor: pointer;
       background-color: var(--purple);
-      border: 2px solid var(--purple-dark);
+      border: 1px solid var(--purple-dark);
       color: var(--white);
       display: inline-block;
-      font-size: 1.6rem;
-      font-weight: bold;
-      padding: 0.2rem 0;
+      width: 2rem;
+      padding: 0.6rem;
       text-align: center;
-      width: 3rem;
       &:hover { background-color: var(--purple-2); }
     }
   }
@@ -147,7 +203,8 @@ a {
   .menu-header {
     display: block;
     position: relative;
-    padding: 0.6rem;
+    padding: 0.5rem 0.6rem;
+    cursor: pointer;
     background-color: var(--gray-lite);
     border: 1px solid var(--gray-lite-3);
     color: var(--gray);
@@ -165,7 +222,7 @@ a {
     .menu-icon {
       display: inline-block;
       width: 2rem;
-      padding: 0.36rem 0;
+      padding: 0.3rem 0;
       border-radius: 50%;
       background-color: var(--gray);
       color: var(--gray-lite);
@@ -189,6 +246,7 @@ a {
     background-color: var(--gray);
     border: 0;
     color: var(--gray-lite);
+    &::after { content: '' };
     &:hover { background-color: var(--gray-2); }
 
     .menu-label { display: none; }
@@ -231,18 +289,26 @@ a {
   }
 }
 
-.sb-left { border-right: 1px solid var(--gray-2); }
-.sb-right { border-left: 1px solid var(--gray-2); }
+.sidebar[data-side="left"] { border-right: 1px solid var(--gray-2); }
+.sidebar[data-side="right"] { border-left: 1px solid var(--gray-2); }
 
 /* -- FOOTER SECTION -- */
 .footer {
-  grid-column: 1 / span 3;
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
+  justify-content: space-between;
   background-color: var(--gray);
   border: 1px solid var(--gray-2);
-  padding: 0.8rem;
-  .divider { display: inline-block; margin: 0 0.6rem; color: var(--gray-2); }
-  .coded { font-family: monospace; font-size: 120%; color: #5af }
+  padding: 0.8rem 1.2rem;
+
+  .legal {
+    .right {
+      &::before {
+        content: '•';
+        margin: auto 0.6rem auto 0.4rem;
+        color: var(--gray-2);
+      }
+    }
+  }
 }

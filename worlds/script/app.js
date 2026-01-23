@@ -1,15 +1,10 @@
-/* -----------------------------------------
-WHAT : Application Start-up Script Execution
-WHY  : Automated Detection of Brand New
-       OR Existing User Session
-       AND Reset User Interface
------------------------------------------ */
+/* -------------------------------------------------------------
+WHAT : System Start-up Script Execution
+WHY  : Activation of the System in its entirety.
+------------------------------------------------------------- */
 
-function runApp() {
-  // Sidebar State : Reset to "Closed"
-  toggleSidebar('sidebar-left');
-  toggleSidebar('sidebar-right');
+// Import Dependency
+import system from './system.js'; // Critical System Function
 
-  // Copyright Notice : Set Current Year (YYY)
-  getCurrYear('ft-year');
-}
+// Start the Application
+system.start();

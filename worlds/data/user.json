@@ -1,0 +1,28 @@
+{
+  "userData": [
+    {
+      "username" : "demoadmin",
+      "password" : "Admin@2468",
+      "email"    : "demoadmin@example.com",
+      "type"     : "administrator"
+    },
+    {
+      "username" : "demomod",
+      "password" : "Mod@2468",
+      "email"    : "demomod@example.com",
+      "type"     : "moderator"
+    },
+    {
+      "username" : "demoveteran",
+      "password" : "Veteran@2468",
+      "email"    : "demoveteran@example.com",
+      "type"     : "player"
+    },
+    {
+      "username" : "demostarter",
+      "password" : "Starter@2468",
+      "email"    : "demostarter@example.com",
+      "type"     : "player"
+    }
+  ]
+}
