@@ -1,14 +1,57 @@
-/* ------------------------------------------------
+/* -------------------------------------------------------------
 WHAT : Functions for Responsive User Interface (UI)
 WHY  : Requirements cannot be met by using Plain
        HTML & CSS.
------------------------------------------------- */
+------------------------------------------------------------- */
 
 // Import Dependencies
+import meta from './meta.js'; // Metadata API
 import api from './api.js'; // Helper Function & Data Transformation
+import view from './view.js' // View API
 
 const ui = {
-  // Event Router : Execute Function based on Target ID
+
+  // Head Content : Insert Title & Favicon
+  loadHead: () => {
+    document.querySelector('head').innerHTML += `
+      <title>${meta.product} - ${meta.edition} Edition v${meta.version}</title>
+      <link rel="icon" type="image/x-icon" href="asset/icon/favicon.ico">
+    `
+  },
+
+  // Animated Background : Insert Starry Sky into HTML <body> Section
+  loadBG: () => {
+    document.querySelector('body').innerHTML += `
+      <div class="starry-sky">
+        <div class="star-fast"><div class="star-big"></div></div>
+        <div class="star-slow"><div class="star-small"></div></div>
+      </div>
+    `
+  },
+
+  // Global Event Delegation : Attach Event Listener at Viewport Level
+  delegate: () => {
+    document.addEventListener('click', (event) => {
+      try {
+        let newTarget = event.target.closest('[data-target]').dataset.target;
+        let newAction = event.target.closest('[data-target]').dataset.action;
+        ui.router(newTarget, newAction);
+      } catch (error) { '' }
+    })
+  },
+
+  // Event Delegation Router : Decision Tree for Destination
+  router: (newTarget, newAction) => {
+    switch (newTarget) {
+      case 'view':
+        view.router(newAction); // View Router
+        break;
+      default:
+        console.log(`Delegate Router: ${newTarget} is not a valid API Name.`);
+    }
+  },
+
+  // [Deprecate] Event Router : Execute Function based on Target ID
   eventRouter: (e) => {
     let targetType = e.target.getAttribute('data-type');
     let targetID = e.target.id;
